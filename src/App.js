@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
+import { withRouter } from "react-router";
 
 // Components
 import NavBar from "./components/Navigation/NavBar";
@@ -8,6 +9,7 @@ import Footer from "./components/Footer";
 import PrivateRoute from "./components/PrivateRoute";
 import Welcome from "./components/Welcome";
 import SuperSecretPage from "./components/SuperSecretPage";
+import Message from "./components/Message/Message";
 
 class App extends Component {
   render() {
@@ -17,6 +19,7 @@ class App extends Component {
         <AuthModals />
         <Switch>
           <Route path="/welcome" component={Welcome} />
+          <Route path="/channels/:name" component={Message} />
           <PrivateRoute path="/private" component={SuperSecretPage} />
           <Redirect to="/welcome" />
         </Switch>
@@ -26,4 +29,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withRouter(App);

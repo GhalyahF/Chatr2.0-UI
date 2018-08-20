@@ -6,7 +6,7 @@ import axios from "axios";
 import setAuthToken from "../utils/setAuthToken";
 
 const instance = axios.create({
-  baseURL: "http://localhost:8000"
+  baseURL: "https://api-chatr.herokuapp.com/"
 });
 
 class AuthStore {

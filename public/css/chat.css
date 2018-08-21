@@ -11,7 +11,7 @@ body {
   margin-top: 450px;
   position: absolute;
   width: calc(100% - 20px);
-  max-width: 2150px;
+  max-width: 2250px;
   height: 900px;
   border-radius: 10px;
   background-color: #fff;
@@ -168,7 +168,7 @@ body {
   width: calc(100% - 40px);
   position: absolute;
   outline-width: 0;
-  color: gray;
+  color: 	#A9A9A9;
 }
 .bottom_wrapper .send_message {
   width: 140px;

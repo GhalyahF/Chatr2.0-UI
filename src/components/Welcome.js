@@ -6,7 +6,11 @@ import { observer } from "mobx-react";
 class Welcome extends Component {
   render() {
     if (authStore.currentUser) {
-      return <Profile />;
+      return (
+        <div className="col-md-11">
+          <Profile />
+        </div>
+      );
     } else {
       return (
         <header className="masthead d-flex">

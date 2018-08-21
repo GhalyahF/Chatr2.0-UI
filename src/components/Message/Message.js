@@ -2,8 +2,9 @@ import React, { Component } from "react";
 import { observer } from "mobx-react";
 import channelStore from "../../stores/channelStore";
 import MessageRow from "./MessageRow";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import authStore from "../../stores/authStore";
+import Profile from "../Profile/Profile";
+import Welcome from "../Welcome";
 class Message extends Component {
   constructor(props) {
     super(props);
@@ -12,72 +13,93 @@ class Message extends Component {
 
   sendMessage = () => {
     const messageBody = this.inputText.current.value;
-    channelStore.createMessage(messageBody, this.props.match.params.name);
+    this.inputText.current.value = "";
+    channelStore.createMessage(messageBody);
   };
 
   handleKeyPress = event => {
+    const messageBody = this.inputText.current.value;
     if (event.key === "Enter") {
-      this.sendMessage();
+      this.inputText.current.value = "";
+      channelStore.createMessage(messageBody);
     }
   };
 
-  componentWillMount() {
+  componentDidMount() {
     channelStore.channelID = this.props.match.params.name;
+    channelStore.getMessages();
   }
 
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.match.params.name !== this.props.match.params.name) {
       channelStore.channelID = this.props.match.params.name;
+      channelStore.getMessages();
     }
   }
 
   render() {
-    const messageList = channelStore.getMessages();
-    const messages = messageList.map(message => (
+    const messages = channelStore.messages.map(message => (
       <MessageRow
         key={message.id}
         message={{ ...message }}
         picture="img/abdullah.png"
       />
     ));
-
-    if (channelStore.loadingMessage) {
+    const count = messages.length;
+    if (!authStore.currentUser) {
+      return <Welcome />;
+    } else if (channelStore.loadingMessage) {
       return <h1>Loading ... </h1>;
     } else {
       return (
-        <div className="col-xl-8">
-          <div className="card card-default">
-            <div className="card-header">
-              <div className="px-2 float-right badge badge-danger">5</div>
-              <div className="px-2 mr-2 float-right badge badge-success">
-                12
-              </div>
-              <div className="card-title">Team messages</div>
-            </div>
-            <div className="list-group" data-height="180" data-scrollable="">
-              {messages}
-              <div className="card-footer">
-                <div className="input-group">
-                  <input
-                    className="form-control form-control-sm"
-                    type="text"
-                    placeholder="Write your message here .."
-                    ref={this.inputText}
-                    onKeyPress={this.handleKeyPress}
-                  />
-                  <span className="input-group-btn">
-                    <button className="btn btn-secondary btn-sm" type="submit">
-                      <FontAwesomeIcon
-                        icon={faSearch}
-                        onClick={this.sendMessage}
-                      />
-                    </button>
-                  </span>
+        <React.Fragment>
+          <div className="col-xl-11">
+            <Profile />
+          </div>
+          <div className="row">
+            <div className="col-xl-11">
+              <div className="chat_window">
+                <div className="top_menu">
+                  <div className="buttons">
+                    {/* <div className="button close" />
+                    <div className="button minimize" />
+                    <div className="button maximize" /> */}
+                    <div className="px-2 mr-2 float-right badge badge-success">
+                      Total Messages: {count}
+                    </div>
+                  </div>
+                  <div className="title">Chat</div>
                 </div>
+                <ul className="messages">{messages}</ul>
+                <div className="bottom_wrapper clearfix">
+                  <div className="message_input_wrapper">
+                    <input
+                      className="message_input"
+                      type="text"
+                      placeholder="Write your message here .."
+                      ref={this.inputText}
+                      onKeyPress={this.handleKeyPress}
+                    />
+                  </div>
+                  <div className="send_message">
+                    <div className="icon" />
+                    <div onClick={this.sendMessage} className="text">
+                      Send
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="message_template">
+                <li className="message">
+                  <div className="avatar" />
+                  <div className="text_wrapper">
+                    <div className="text" />
+                  </div>
+                </li>
               </div>
             </div>
           </div>
-        </div>
+        </React.Fragment>
       );
     }
   }

@@ -24,7 +24,7 @@ class AuthButton extends Component {
             data-toggle="modal"
             data-target="#logoutModal"
           >
-            <FontAwesomeIcon icon={faSignOutAlt} /> Logout
+            <FontAwesomeIcon icon={faSignOutAlt} />Logout
           </a>
         </li>
       );
@@ -32,7 +32,7 @@ class AuthButton extends Component {
       buttons = [
         <li key="loginButton" className="nav-item">
           <a className="nav-link" data-toggle="modal" data-target="#loginModal">
-            <FontAwesomeIcon icon={faSignInAlt} /> Login
+            <FontAwesomeIcon icon={faSignInAlt} />Login
           </a>
         </li>,
         <li key="signupButton" className="nav-item">
@@ -41,7 +41,7 @@ class AuthButton extends Component {
             data-toggle="modal"
             data-target="#signupModal"
           >
-            <FontAwesomeIcon icon={faUserPlus} /> Signup
+            <FontAwesomeIcon icon={faUserPlus} />Signup
           </a>
         </li>
       ];

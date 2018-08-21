@@ -6,7 +6,7 @@ class MessageRow extends Component {
     const message = this.props.message;
     let picture = this.props.picture;
     const dateTime = message.timestamp;
-    Moment.locale("tr"); //For Turkey
+    Moment.locale("en-gb");
     const formattedDT = Moment(dateTime).format("LL"); //20 Mart 2017
 
     if (message.username !== "abdabbas") {

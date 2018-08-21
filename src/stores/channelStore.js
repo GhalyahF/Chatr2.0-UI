@@ -40,9 +40,9 @@ class ChannelStore {
     });
   }
 
-  getMessagesfromAPI(channelID) {
+  getMessages() {
     instance
-      .get(`channels/${channelID}/`)
+      .get(`channels/${this.channelID}/`)
       .then(response => response.data)
       .then(messages => {
         this.messages = messages;
@@ -50,28 +50,27 @@ class ChannelStore {
       })
       .catch(err => console.log(err));
   }
-  getLatestMessagefromAPI(channelID, timestamp) {
+
+  getLatestMessages(timestamp) {
     instance
-      .get(`channels/${channelID}/?latest=${timestamp}`)
+      .get(`channels/${this.channelID}/?latest=${timestamp}`)
       .then(response => response.data)
       .then(messages => {
         this.messages.push(messages);
+        this.loadingMessage = false;
       })
       .catch(err => console.log(err));
   }
 
-  getMessages() {
-    this.getMessagesfromAPI(this.channelID);
-    return this.messages;
-  }
-
-  createMessage(messageBody, channelID) {
+  createMessage(messageBody) {
     const data = {
       message: messageBody
     };
-    return instance.post(`channels/${channelID}/send/`, data).then(() => {
+    return instance.post(`channels/${this.channelID}/send/`, data).then(() => {
       const timeNow = Date.now();
-      this.getLatestMessagefromAPI(channelID, timeNow);
+      console.log("time is: " + timeNow);
+      // this.getLatestMessages(timeNow);
+      this.getMessages();
     });
   }
 }
@@ -80,6 +79,7 @@ decorate(ChannelStore, {
   channels: observable,
   messages: observable,
   loading: observable,
+  loadingMessage: observable,
   channelID: observable
 });
 

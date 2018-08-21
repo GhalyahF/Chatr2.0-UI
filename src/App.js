@@ -10,6 +10,7 @@ import PrivateRoute from "./components/PrivateRoute";
 import Welcome from "./components/Welcome";
 import SuperSecretPage from "./components/SuperSecretPage";
 import Message from "./components/Message/Message";
+import landingPage from "./components/LandingPage";
 
 class App extends Component {
   render() {
@@ -18,7 +19,7 @@ class App extends Component {
         <NavBar />
         <AuthModals />
         <Switch>
-          <Route path="/welcome" component={Welcome} />
+          <Route path="/welcome" component={(Welcome, landingPage)} />
           <Route path="/channels/:name" component={Message} />
           <PrivateRoute path="/private" component={SuperSecretPage} />
           <Redirect to="/welcome" />

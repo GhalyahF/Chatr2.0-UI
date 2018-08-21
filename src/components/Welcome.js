@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import authStore from "../stores/authStore";
 import Profile from "./Profile/Profile";
 import { observer } from "mobx-react";
+import { Link } from "react-router-dom";
 
 class Welcome extends Component {
   render() {
@@ -9,11 +10,19 @@ class Welcome extends Component {
       return <Profile />;
     } else {
       return (
-        <header className="masthead d-flex">
+        <header className="masthead d-flex" id="welcome-headline">
           <div className="container text-center my-auto z-1">
-            <h1 className="mb-1">WELCOME TO CHATR</h1>
+            <h1 className="mb-1">
+              CHATR 2.0{" "}
+              <Link className="navbar-brand" to="/welcome">
+                <img
+                  src="https://png.icons8.com/metro/50/000000/chat.png"
+                  alt="chatr logo"
+                />
+              </Link>
+            </h1>
             <h3 className="mb-5">
-              <em>You're gonna need to login to see the messages</em>
+              <em id="welcome-mssg"> Login to see the messages. </em>
             </h3>
             <button
               className="btn btn-primary btn-lg"

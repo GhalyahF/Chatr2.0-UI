@@ -1,12 +1,22 @@
 import React, { Component } from "react";
+// import RegistrationForm from "../Modals/RegistrationForm";
 
 class Profile extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      status: true
+      status: true,
+      selectedFile: null
     };
   }
+
+  fileChangedHandler = event => {
+    this.setState({ selectedFile: event.target.files[0] });
+  };
+
+  uploadHandler = () => {
+    console.log(this.state.selectedFile);
+  };
 
   changeStatus = () => {
     this.setState({ status: !this.state.status });

@@ -16,6 +16,21 @@ class RegistationForm extends Component {
             </div>
           )}
           <div className="form-group">
+            {/* avatar upload*/}
+            <input
+              className="form-control"
+              type="file"
+              placeholder="Avatar"
+              onChange={this.fileChangedHandler}
+            />{" "}
+            <button
+              className="mx-auto mt-3 btn btn-small btn-link"
+              onClick={this.uploadHandler}
+            >
+              Upload Avatar
+            </button>
+          </div>
+          <div className="form-group">
             <input
               className="form-control"
               type="text"

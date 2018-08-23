@@ -1,22 +1,14 @@
 import React, { Component } from "react";
 // import RegistrationForm from "../Modals/RegistrationForm";
+import authStore from "../../stores/authStore";
 
 class Profile extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      status: true,
-      selectedFile: null
+      status: true
     };
   }
-
-  fileChangedHandler = event => {
-    this.setState({ selectedFile: event.target.files[0] });
-  };
-
-  uploadHandler = () => {
-    console.log(this.state.selectedFile);
-  };
 
   changeStatus = () => {
     this.setState({ status: !this.state.status });
@@ -46,16 +38,25 @@ class Profile extends Component {
     }
   };
 
+  showPhoto = () => {
+    let picture = "";
+    if (authStore.currentUser === "abdabbas") {
+      return (picture = "img/abdullah.png");
+    } else {
+      return (picture = "img/Ghalyah.png");
+    }
+  };
+
   render() {
     const style = { backgroundImage: `url(img/profile-bg.jpg)` };
     return (
-      <div className="col-md-12">
+      <div className="col-md-10">
         <div className="card b text-white">
           <div className="card-body bg-cover clearfix" style={style}>
             <div className="media mt-0 align-items-center">
               <img
                 className="mr-3 img-thumbnail rounded-circle thumb96"
-                src="img/abdullah.png"
+                src={this.showPhoto()}
                 alt="jsx-a11y/img-redundant-alt"
               />
               <div className="media-body">

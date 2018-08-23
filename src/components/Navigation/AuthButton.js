@@ -9,6 +9,8 @@ import {
   faUserPlus
 } from "@fortawesome/free-solid-svg-icons";
 
+//components
+// import Profile from "../Profile/Profile";
 // Stores
 import authStore from "../../stores/authStore";
 
@@ -18,15 +20,28 @@ class AuthButton extends Component {
 
     if (authStore.isLoggedIn) {
       buttons = (
-        <li className="nav-item">
-          <a
-            className="nav-link"
-            data-toggle="modal"
-            data-target="#logoutModal"
-          >
-            <FontAwesomeIcon icon={faSignOutAlt} />Logout
-          </a>
-        </li>
+        <React.Fragment>
+          <li className="nav-item">
+            <a className="nav-link">
+              <span className="circle bg-success circle-lg text-left" />
+            </a>
+          </li>
+
+          <li className="nav-item">
+            <a className="nav-link">
+              <span className="navbar-link"> {authStore.currentUser}</span>
+            </a>
+          </li>
+          <li className="nav-item">
+            <a
+              className="nav-link"
+              data-toggle="modal"
+              data-target="#logoutModal"
+            >
+              <FontAwesomeIcon icon={faSignOutAlt} />Logout
+            </a>
+          </li>
+        </React.Fragment>
       );
     } else {
       buttons = [
@@ -49,7 +64,7 @@ class AuthButton extends Component {
 
     return (
       <ul className="navbar-nav ml-auto">
-        <span className="navbar-text">{authStore.currentUser}</span>
+        {/* <span className="navbar-text">{authStore.currentUser}</span> */}
         {buttons}
       </ul>
     );

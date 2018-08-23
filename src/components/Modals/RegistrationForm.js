@@ -5,6 +5,25 @@ import { observer } from "mobx-react";
 import authStore from "../../stores/authStore";
 
 class RegistationForm extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: "female",
+      selectedFile: null
+    };
+  }
+  fileChangedHandler = event => {
+    this.setState({ selectedFile: event.target.files[0] });
+  };
+
+  uploadHandler = () => {
+    console.log(this.state.selectedFile);
+  };
+
+  handleChange(event) {
+    this.setState({ value: event.target.value });
+  }
+
   render() {
     console.log(authStore.errors);
     return (
@@ -16,7 +35,7 @@ class RegistationForm extends Component {
             </div>
           )}
           <div className="form-group">
-            {/* avatar upload*/}
+            {/* AVATAR UPLOAD*/}
             <input
               className="form-control"
               type="file"
@@ -29,6 +48,14 @@ class RegistationForm extends Component {
             >
               Upload Avatar
             </button>
+          </div>
+          <div className="form-group">
+            <select>
+              <option value="Male ">Male</option>
+              <option selected value="Female">
+                Female
+              </option>
+            </select>
           </div>
           <div className="form-group">
             <input

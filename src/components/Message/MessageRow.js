@@ -9,7 +9,11 @@ class MessageRow extends Component {
     Moment.locale("en-gb");
     const formattedDT = Moment(dateTime).format("LL"); //20 Mart 2017
 
-    if (message.username !== "abdabbas") {
+    if (message.username === "abdabbas") {
+      picture = "img/abdullah.png";
+    } else if (message.username === "GhalyahFA") {
+      picture = "img/Ghalyah.png";
+    } else {
       picture = "img/contact.png";
     }
     console.log(picture);

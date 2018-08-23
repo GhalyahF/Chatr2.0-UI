@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { observer } from "mobx-react";
 
 import JSEMOJI from "emoji-js";
-import EmojiPicker from "emoji-picker-react";
 import EmojiModal from "../Modals/EmojiModal";
 //stores
 import channelStore from "../../stores/channelStore";
@@ -10,7 +9,7 @@ import authStore from "../../stores/authStore";
 //components
 import MessageRow from "./MessageRow";
 import Welcome from "../Welcome";
-import StateWithEmoji from "../StateWithEmoji";
+
 
 //emoji set up
 let jsemoji = new JSEMOJI();

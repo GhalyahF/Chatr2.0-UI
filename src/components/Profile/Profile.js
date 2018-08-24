@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-// import RegistrationForm from "../Modals/RegistrationForm";
 import authStore from "../../stores/authStore";
 
 class Profile extends Component {
@@ -39,7 +38,7 @@ class Profile extends Component {
   };
 
   showPhoto = () => {
-    let picture = "";
+    let picture = " ";
     if (authStore.currentUser === "abdabbas") {
       return (picture = "img/abdullah.png");
     } else {
@@ -62,14 +61,14 @@ class Profile extends Component {
               <div className="media-body">
                 <div className="d-flex">
                   <div>
-                    <h4 className="m-0">Abdullah Alrayes</h4>
+                    <h4 className="m-0">{authStore.currentUser}</h4>
                     <p>Django Developer</p>
                     {this.showStatus()}
                   </div>
                   <div className="ml-auto">
                     <div className="inline text-center mr-2">
                       <div className="h3 m-0">
-                        <strong>1.4k</strong>
+                        <strong>1k</strong>
                       </div>
                       <small>followers</small>
                     </div>
@@ -77,7 +76,7 @@ class Profile extends Component {
                       <div className="h3 m-0">
                         <strong>350</strong>
                       </div>
-                      <small>pictures</small>
+                      <small>Messages</small>
                     </div>
                   </div>
                 </div>

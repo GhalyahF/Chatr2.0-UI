@@ -5,14 +5,7 @@ import EmojiPicker from "emoji-picker-react";
 import Message from "./Message/Message";
 
 function StateWithEmoji(props) {
-  const {
-    text,
-    items,
-    handleChange,
-    handleEmojiClick,
-    handleSubmit,
-    toggleEmojiState
-  } = props;
+  const { text, items, handleChange, handleEmojiClick, handleSubmit } = props;
 
   return (
     <div className="container">

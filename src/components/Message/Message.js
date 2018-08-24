@@ -10,7 +10,6 @@ import authStore from "../../stores/authStore";
 import MessageRow from "./MessageRow";
 import Welcome from "../Welcome";
 
-
 //emoji set up
 let jsemoji = new JSEMOJI();
 // set the style to emojione (default - apple)
@@ -43,16 +42,10 @@ class Message extends Component {
     }
   };
 
-  //emoji inside text input field
+  //emoji handler
   handleEmojiClick = (n, e) => {
     let emoji = jsemoji.replace_colons(`:${e.name}:`);
     this.inputText.current.value = emoji;
-  };
-
-  toggleEmojiState = () => {
-    this.setState({
-      emojiShown: !this.state.emojiShown
-    });
   };
 
   componentDidMount() {

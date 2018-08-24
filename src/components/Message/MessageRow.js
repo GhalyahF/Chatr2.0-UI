@@ -16,8 +16,6 @@ class MessageRow extends Component {
     } else {
       picture = "img/contact.png";
     }
-    console.log(picture);
-
     return (
       <div className="list-group-item list-group-item-action">
         <div className="media">
